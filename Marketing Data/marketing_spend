@@ -1,4 +1,4 @@
-SELECT *
+SELECT r.account_no, mc.marketing_spend
 FROM public.revenue_raw_data as r
 LEFT JOIN public.marketing_dat_clean as mc
 ON r.account_no = mc.account_no
@@ -6,5 +6,7 @@ LEFT JOIN public.opportunities_data as od
 ON r.account_no = od.new_account_no
 LEFT JOIN public.targets_raw_data as t
 ON r.account_no = t.account_no
-LIMIT 500
+WHERE r.account_no = 97575124
+GROUP by r.account_no, mc.marketing_spend
+ORDER BY mc.marketing_spend
 --Need to join on ids. Redo this. 
